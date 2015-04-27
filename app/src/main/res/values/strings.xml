@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">QuickStart</string>
+    <string name="action_settings">Add</string>
+    <string name="hint_name">name</string>
+    <string name="hint_url_scheme">url scheme</string>
+    <string name="hint_app">apps name</string>
+    <string name="delete">Delete</string>
+    <string name="change">Change</string>
+    <string name="start_app">Start app</string>
+    <string name="title_choose" formatted="false">Choose command for element %s</string>
+    <string name="empty_list">List of url schemes is empty \n You can add url schemes ;)</string>
+    <string name="add">Add</string>
+
+</resources>
