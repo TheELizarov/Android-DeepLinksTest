@@ -1,6 +1,6 @@
 package simplestart.fmore.ru.apps.model;
 
-import android.content.ContentResolver;
+import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +10,8 @@ import android.provider.BaseColumns;
 import android.text.TextUtils;
 
 import java.io.Serializable;
+
+import simplestart.fmore.ru.apps.R;
 
 /**
  * Created by Elizarov Sergey (sergey.elizarov@altarix.ru)
@@ -42,7 +44,8 @@ public class Start implements Serializable {
 
     public boolean isEmpty() {
         return name == null || TextUtils.isEmpty(name) || "null".equalsIgnoreCase(name)
-                || start == null || TextUtils.isEmpty(start) || "null".equalsIgnoreCase(start);
+                || start == null || TextUtils.isEmpty(start) || "null".equalsIgnoreCase(start)
+                || app == null || TextUtils.isEmpty(app) || "null".equalsIgnoreCase(app);
     }
 
     public ContentValues asContentValues() {
@@ -92,8 +95,15 @@ public class Start implements Serializable {
     public void start(Context context) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(start));
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(intent);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        try {
+            context.startActivity(intent);
+        } catch (Exception ignored) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setMessage(context.getString(R.string.error_message_not_found_app));
+            builder.setPositiveButton(context.getString(R.string.btn_continue), null);
+            builder.show();
+        }
     }
 
     public boolean compareByApp(Start other) {
